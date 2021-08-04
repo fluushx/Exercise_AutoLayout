@@ -37,18 +37,35 @@ class ViewController: UIViewController {
         description.clipsToBounds = true
         return description
     }()
+    
+
+    
     let previousButton:UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor =  .red
+        button.setTitle("Previous", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitleColor(.gray, for: .normal)
         return button
     }()
     
     let NextButton:UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor =  .blue
+        button.setTitle("Next", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitleColor(.blue, for: .normal)
         return button
+    }()
+    
+    let pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        pc.pageIndicatorTintColor = .red
+        pc.currentPageIndicatorTintColor = .blue
+        return pc
     }()
 
     override func viewDidLoad() {
@@ -60,7 +77,9 @@ class ViewController: UIViewController {
     }
      private func setUpButton(){
        
-        let controlButtonStackView = UIStackView(arrangedSubviews: [previousButton,NextButton])
+        let greenView = UIView()
+        greenView.backgroundColor = .green
+        let controlButtonStackView = UIStackView(arrangedSubviews: [previousButton,pageControl,NextButton])
         controlButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         controlButtonStackView.distribution = .fillEqually
         
