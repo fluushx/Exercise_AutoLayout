@@ -37,12 +37,37 @@ class ViewController: UIViewController {
         description.clipsToBounds = true
         return description
     }()
+    let previousButton:UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor =  .red
+        return button
+    }()
+    
+    let NextButton:UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor =  .blue
+        return button
+    }()
 
     override func viewDidLoad() {
        super.viewDidLoad()
  
         view.addSubview(descriptionLabel)
         imageConstrains()
+        setUpButton()
+    }
+     private func setUpButton(){
+       
+        let controlButtonStackView = UIStackView(arrangedSubviews: [previousButton,NextButton])
+        controlButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        controlButtonStackView.distribution = .fillEqually
+        
+        view.addSubview(controlButtonStackView)
+        controlButtonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -50).isActive = true
+        controlButtonStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        controlButtonStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     func imageConstrains(){
